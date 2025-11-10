@@ -13,6 +13,6 @@ dependencies = [
   "strawberry-graphql==0.227.3",
   "redis==5.0.1",
   "cachetools==5.3.3",
-  "python-multipart==0.0.9",
+  "python-multipart==0.0.18",
   "pydantic-settings==2.5.2"
 ]
