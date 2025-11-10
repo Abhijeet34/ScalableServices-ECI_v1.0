@@ -1,0 +1,63 @@
+# VCS
+.git
+.gitignore
+.github/
+
+# Python caches and bytecode
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.cache/
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+.conda/
+
+# Node/Yarn
+node_modules/
+**/node_modules/
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Build artifacts
+build/
+dist/
+.eggs/
+*.egg-info/
+*.egg
+
+# Logs and temp files
+*.log
+logs/
+tmp/
+.temp/
+*.swp
+
+# Project folders not needed in images
+backups/
+docs/
+reports/
+
+# Env files (never needed in image build context)
+.env
+.env.*
+
+# Misc
+launcher.sh.bak
+
+# Dependency cache (script artifact)
+.dependency_cache

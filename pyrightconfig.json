@@ -1,0 +1,96 @@
+{
+  "include": [
+    "services",
+    "shared",
+    "tests",
+    "scripts"
+  ],
+  "exclude": [
+    "**/node_modules",
+    "**/__pycache__",
+    "**/.*",
+    "**/.venv",
+    "**/venv",
+    "**/.pytest_cache",
+    "**/.mypy_cache",
+    "**/dist",
+    "**/build"
+  ],
+  "ignore": [],
+  "defineConstant": {},
+  "stubPath": "",
+  "pythonVersion": "3.11",
+  "pythonPlatform": "Darwin",
+  "executionEnvironments": [
+    {
+      "root": "services",
+      "pythonVersion": "3.11",
+      "pythonPlatform": "Darwin",
+      "extraPaths": [
+        "shared"
+      ]
+    },
+    {
+      "root": "shared",
+      "pythonVersion": "3.11",
+      "pythonPlatform": "Darwin"
+    },
+    {
+      "root": "tests",
+      "pythonVersion": "3.11",
+      "pythonPlatform": "Darwin",
+      "extraPaths": [
+        "shared",
+        "services"
+      ]
+    }
+  ],
+  "typeCheckingMode": "basic",
+  "reportMissingImports": "warning",
+  "reportMissingTypeStubs": false,
+  "reportImportCycles": "warning",
+  "reportUnusedImport": false,
+  "reportUnusedClass": false,
+  "reportUnusedFunction": false,
+  "reportUnusedVariable": false,
+  "reportDuplicateImport": "warning",
+  "reportWildcardImportFromLibrary": false,
+  "reportOptionalSubscript": false,
+  "reportOptionalMemberAccess": false,
+  "reportOptionalCall": false,
+  "reportOptionalIterable": false,
+  "reportOptionalContextManager": false,
+  "reportOptionalOperand": false,
+  "reportTypedDictNotRequiredAccess": false,
+  "reportPrivateImportUsage": false,
+  "reportConstantRedefinition": "warning",
+  "reportIncompatibleMethodOverride": "warning",
+  "reportIncompatibleVariableOverride": "warning",
+  "reportOverlappingOverload": "warning",
+  "reportUntypedFunctionDecorator": false,
+  "reportUntypedClassDecorator": false,
+  "reportUntypedBaseClass": false,
+  "reportUntypedNamedTuple": false,
+  "reportCallInDefaultInitializer": false,
+  "reportUnnecessaryIsInstance": false,
+  "reportUnnecessaryCast": false,
+  "reportUnnecessaryComparison": false,
+  "reportAssertAlwaysTrue": "warning",
+  "reportSelfClsParameterName": "warning",
+  "reportUnknownParameterType": false,
+  "reportUnknownArgumentType": false,
+  "reportUnknownLambdaType": false,
+  "reportUnknownVariableType": false,
+  "reportUnknownMemberType": false,
+  "reportMissingParameterType": false,
+  "reportMissingTypeArgument": false,
+  "reportInvalidTypeVarUse": "warning",
+  "reportUnsupportedDunderAll": "warning",
+  "reportUnusedCoroutine": "warning",
+  "reportGeneralTypeIssues": false,
+  "reportPropertyTypeMismatch": "warning",
+  "reportFunctionMemberAccess": "warning",
+  "reportInvalidStringEscapeSequence": "warning",
+  "reportArgumentType": false,
+  "reportAttributeAccessIssue": false
+}

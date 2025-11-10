@@ -1,0 +1,23 @@
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: eci-cluster
+servers: 1
+agents: 0
+image: rancher/k3s:v1.28.5-k3s1
+ports:
+  - port: 30080:30080
+    nodeFilters:
+      - server:0
+  - port: 30008:30008
+    nodeFilters:
+      - server:0
+options:
+  k3s:
+    extraArgs:
+      - arg: --disable=traefik
+        nodeFilters:
+          - server:*
+  kubeconfig:
+    updateDefaultKubeconfig: true
+    switchCurrentContext: true

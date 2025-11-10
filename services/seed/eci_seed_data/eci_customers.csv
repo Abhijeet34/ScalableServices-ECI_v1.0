@@ -1,0 +1,101 @@
+customer_id,name,email,phone,address_street,address_city,address_state,address_zip,address_country,created_at
+1,Priya Iyer,priya.iyer@mail.com,+91 9620345176,15 MG Road,Bangalore,Karnataka,560001,India,2025-04-07 18:17:29
+2,Aarav Sharma,aarav.sharma@mail.com,+91 9366981803,42 Connaught Place,Delhi,Delhi,110001,India,2023-10-05 18:35:16
+3,Ananya Verma,ananya.verma@mail.com,+91 9111129046,78 Marine Drive,Mumbai,Maharashtra,400002,India,2023-07-25 02:20:13
+4,Karan Menon,karan.menon@mail.com,+91 9462082964,23 Anna Salai,Chennai,Tamil Nadu,600002,India,2024-06-16 12:13:47
+5,Diya Patel,diya.patel@mail.com,+91 9655458372,56 FC Road,Pune,Maharashtra,411004,India,2024-07-31 17:31:23
+6,Rohan Sharma,rohan.sharma@mail.com,+91 9341972986,89 Park Street,Kolkata,West Bengal,700016,India,2023-08-27 10:19:41
+7,Aditya Patel,aditya.patel@mail.com,+91 9031215033,34 CG Road,Ahmedabad,Gujarat,380009,India,2024-08-02 07:16:35
+8,Vivaan Singh,vivaan.singh@mail.com,+91 9139441430,67 MI Road,Jaipur,Rajasthan,302001,India,2025-04-28 09:46:59
+9,Neha Kapoor,neha.kapoor@mail.com,+91 9742995159,12 Ring Road,Surat,Gujarat,395001,India,2024-11-17 18:53:20
+10,Ishaan Verma,ishaan.verma@mail.com,+91 9406106233,45 Sector 17,Delhi,Delhi,110002,India,2023-10-31 03:42:35
+11,Sanya Singh,sanya.singh@mail.com,+91 9771086993,91 Brigade Road,Bangalore,Karnataka,560025,India,2025-01-31 21:52:26
+12,Arjun Das,arjun.das@mail.com,+91 9506374303,28 Chandni Chowk,Delhi,Delhi,110006,India,2024-04-23 14:15:14
+13,Kabir Singh,kabir.singh@mail.com,+91 9287441787,53 Juhu Beach,Mumbai,Maharashtra,400049,India,2024-10-05 10:15:49
+14,Riya Reddy,riya.reddy@mail.com,+91 9024890970,19 T Nagar,Chennai,Tamil Nadu,600017,India,2024-09-28 01:47:56
+15,Saanvi Desai,saanvi.desai@mail.com,+91 9577113508,72 Koregaon Park,Pune,Maharashtra,411001,India,2025-06-28 02:08:42
+16,Vihaan Khan,vihaan.khan@mail.com,+91 9727136616,36 Salt Lake,Kolkata,West Bengal,700064,India,2024-03-22 21:49:28
+17,Raj Gupta,raj.gupta@mail.com,+91 9960749534,81 SG Highway,Ahmedabad,Gujarat,380015,India,2024-11-08 09:48:44
+18,Myra Joshi,myra.joshi@mail.com,+91 9615581038,47 Bani Park,Jaipur,Rajasthan,302016,India,2023-07-30 11:42:32
+19,Anika Gupta,anika.gupta@mail.com,+91 9249325957,64 Adajan,Surat,Gujarat,395009,India,2023-10-12 15:57:42
+20,Dhruv Kumar,dhruv.kumar@mail.com,+91 9133872635,25 Nehru Place,Delhi,Delhi,110019,India,2024-06-30 05:41:34
+21,Arnav Sharma,arnav.sharma@mail.com,+91 9534391121,88 Whitefield,Bangalore,Karnataka,560066,India,2025-05-17 20:10:33
+22,Kiara Singh,kiara.singh@mail.com,+91 9557140894,31 Karol Bagh,Delhi,Delhi,110005,India,2024-04-29 00:18:02
+23,Isha Gupta,isha.gupta@mail.com,+91 9495913711,59 Bandra,Mumbai,Maharashtra,400050,India,2023-08-10 03:32:26
+24,Ananya Iyer,ananya.iyer@mail.com,+91 9294710441,76 Besant Nagar,Chennai,Tamil Nadu,600090,India,2023-02-20 22:36:03
+25,Navya Das,navya.das@mail.com,+91 9490300165,43 Viman Nagar,Pune,Maharashtra,411014,India,2023-11-07 17:27:04
+26,Aditya Menon,aditya.menon@mail.com,+91 9089931572,92 New Town,Kolkata,West Bengal,700156,India,2025-06-04 19:54:54
+27,Reyansh Verma,reyansh.verma@mail.com,+91 9502129590,37 Satellite,Ahmedabad,Gujarat,380015,India,2023-11-29 11:04:18
+28,Pari Khan,pari.khan@mail.com,+91 9616189454,54 Vaishali Nagar,Jaipur,Rajasthan,302021,India,2024-05-03 05:13:04
+29,Advait Mehta,advait.mehta@mail.com,+91 9543270434,69 Vesu,Surat,Gujarat,395007,India,2024-04-29 16:27:38
+30,Advik Patel,advik.patel@mail.com,+91 9494888930,18 Dwarka,Delhi,Delhi,110075,India,2025-02-02 17:58:47
+31,Ayaan Reddy,ayaan.reddy@mail.com,+91 9561369781,22 Electronic City,Bangalore,Karnataka,560100,India,2024-07-19 00:05:28
+32,Sara Menon,sara.menon@mail.com,+91 9591872752,65 Lajpat Nagar,Delhi,Delhi,110024,India,2024-09-13 17:51:43
+33,Kavya Shah,kavya.shah@mail.com,+91 9644271246,84 Andheri,Mumbai,Maharashtra,400058,India,2023-07-29 02:33:51
+34,Atharv Verma,atharv.verma@mail.com,+91 9006936160,39 Velachery,Chennai,Tamil Nadu,600042,India,2023-04-29 20:46:12
+35,Mishka Jain,mishka.jain@mail.com,+91 9424558507,51 Hadapsar,Pune,Maharashtra,411028,India,2024-10-30 14:42:49
+36,Krish Reddy,krish.reddy@mail.com,+91 9334058374,77 Rajarhat,Kolkata,West Bengal,700135,India,2023-07-28 22:05:06
+37,Avni Desai,avni.desai@mail.com,+91 9754554510,93 Bodakdev,Ahmedabad,Gujarat,380054,India,2024-02-14 03:55:39
+38,Aryan Das,aryan.das@mail.com,+91 9367205138,46 Malviya Nagar,Jaipur,Rajasthan,302017,India,2025-06-26 03:52:01
+39,Shanaya Menon,shanaya.menon@mail.com,+91 9033362659,71 Pal,Surat,Gujarat,395009,India,2023-04-12 18:01:32
+40,Riaan Chopra,riaan.chopra@mail.com,+91 9150645404,26 Rohini,Delhi,Delhi,110085,India,2023-02-04 13:02:05
+41,Zara Reddy,zara.reddy@mail.com,+91 9358163573,55 HSR Layout,Bangalore,Karnataka,560102,India,2024-04-10 06:56:54
+42,Shivansh Kumar,shivansh.kumar@mail.com,+91 9487852094,73 Vasant Vihar,Delhi,Delhi,110057,India,2023-12-17 21:38:22
+43,Aadhya Verma,aadhya.verma@mail.com,+91 9803084276,94 Powai,Mumbai,Maharashtra,400076,India,2024-04-13 21:40:20
+44,Vanya Iyer,vanya.iyer@mail.com,+91 9634256586,38 Adyar,Chennai,Tamil Nadu,600020,India,2025-03-12 22:13:47
+45,Viraj Das,viraj.das@mail.com,+91 9297495674,62 Aundh,Pune,Maharashtra,411007,India,2025-05-29 10:21:02
+46,Tara Singh,tara.singh@mail.com,+91 9311634380,41 Howrah,Kolkata,West Bengal,711101,India,2023-11-13 05:11:37
+47,Rudra Iyer,rudra.iyer@mail.com,+91 9216221073,86 Prahlad Nagar,Ahmedabad,Gujarat,380015,India,2025-01-24 00:21:56
+48,Nitya Reddy,nitya.reddy@mail.com,+91 9601128618,27 Mansarovar,Jaipur,Rajasthan,302020,India,2025-01-24 17:30:04
+49,Arhaan Sharma,arhaan.sharma@mail.com,+91 9832098683,58 Piplod,Surat,Gujarat,395007,India,2023-08-07 08:27:44
+50,Pihu Verma,pihu.verma@mail.com,+91 9795899282,33 Janakpuri,Delhi,Delhi,110058,India,2023-07-09 22:48:38
+51,Moksh Menon,moksh.menon@mail.com,+91 9537241194,49 Indiranagar,Bangalore,Karnataka,560038,India,2024-01-31 01:12:42
+52,Sahil Sharma,sahil.sharma@mail.com,+91 9561542271,76 Rajouri Garden,Delhi,Delhi,110027,India,2025-01-08 05:33:07
+53,Myra Iyer,myra.iyer@mail.com,+91 9690770962,31 Dadar,Mumbai,Maharashtra,400014,India,2024-08-20 14:17:26
+54,Aarush Menon,aarush.menon@mail.com,+91 9818839392,68 Nungambakkam,Chennai,Tamil Nadu,600034,India,2023-05-21 04:46:33
+55,Ivana Iyer,ivana.iyer@mail.com,+91 9814386720,85 Kothrud,Pune,Maharashtra,411038,India,2025-02-02 19:36:04
+56,Dev Reddy,dev.reddy@mail.com,+91 9878886536,52 Ballygunge,Kolkata,West Bengal,700019,India,2025-04-30 20:46:11
+57,Kiaan Khan,kiaan.khan@mail.com,+91 9006671463,97 Naranpura,Ahmedabad,Gujarat,380013,India,2023-05-08 17:49:59
+58,Aarna Gupta,aarna.gupta@mail.com,+91 9598786734,44 Tonk Road,Jaipur,Rajasthan,302015,India,2023-07-27 09:36:22
+59,Lavanya Gupta,lavanya.gupta@mail.com,+91 9532033385,79 Katargam,Surat,Gujarat,395004,India,2023-02-02 05:02:35
+60,Yash Singh,yash.singh@mail.com,+91 9620428066,14 Mayur Vihar,Delhi,Delhi,110091,India,2023-08-20 20:29:17
+61,Raghav Menon,raghav.menon@mail.com,+91 9917494617,63 JP Nagar,Bangalore,Karnataka,560078,India,2023-10-24 00:00:04
+62,Navika Iyer,navika.iyer@mail.com,+91 9418692644,29 Saket,Delhi,Delhi,110017,India,2023-08-15 17:08:38
+63,Ojas Iyer,ojas.iyer@mail.com,+91 9242560489,91 Goregaon,Mumbai,Maharashtra,400063,India,2024-09-09 13:54:50
+64,Reet Reddy,reet.reddy@mail.com,+91 9450509436,48 Mylapore,Chennai,Tamil Nadu,600004,India,2025-07-18 07:42:28
+65,Shaurya Sharma,shaurya.sharma@mail.com,+91 9539618011,74 Baner,Pune,Maharashtra,411045,India,2025-02-04 14:24:01
+66,Ahana Khan,ahana.khan@mail.com,+91 9074239492,35 Dum Dum,Kolkata,West Bengal,700028,India,2024-07-14 03:51:06
+67,Vedant Iyer,vedant.iyer@mail.com,+91 9867238397,82 Maninagar,Ahmedabad,Gujarat,380008,India,2023-08-23 23:33:30
+68,Pari Nair,pari.nair@mail.com,+91 9101414184,57 Civil Lines,Jaipur,Rajasthan,302006,India,2024-11-16 21:02:49
+69,Mira Singh,mira.singh@mail.com,+91 9417132287,66 Majura Gate,Surat,Gujarat,395001,India,2024-02-28 18:24:22
+70,Sai Das,sai.das@mail.com,+91 9595540768,21 Pitampura,Delhi,Delhi,110034,India,2023-02-10 07:56:23
+71,Reva Verma,reva.verma@mail.com,+91 9391304746,87 Koramangala,Bangalore,Karnataka,560034,India,2024-02-23 08:55:08
+72,Tanish Sharma,tanish.sharma@mail.com,+91 9969377952,42 Hauz Khas,Delhi,Delhi,110016,India,2023-03-17 15:00:20
+73,Nitara Menon,nitara.menon@mail.com,+91 9009331980,59 Malad,Mumbai,Maharashtra,400064,India,2023-11-20 11:06:23
+74,Amaira Reddy,amaira.reddy@mail.com,+91 9469128799,96 OMR,Chennai,Tamil Nadu,600097,India,2025-07-26 12:37:05
+75,Ranveer Menon,ranveer.menon@mail.com,+91 9031432604,43 Wakad,Pune,Maharashtra,411057,India,2024-07-26 00:50:03
+76,Tanya Gupta,tanya.gupta@mail.com,+91 9605966795,71 Gariahat,Kolkata,West Bengal,700019,India,2025-03-26 01:24:20
+77,Arnav Iyer,arnav.iyer@mail.com,+91 9494119852,34 Vastrapur,Ahmedabad,Gujarat,380015,India,2023-03-16 03:26:20
+78,Kiyana Verma,kiyana.verma@mail.com,+91 9014065220,68 Bajaj Nagar,Jaipur,Rajasthan,302015,India,2025-02-21 01:46:26
+79,Kabir Verma,kabir.verma@mail.com,+91 9611308254,92 Athwalines,Surat,Gujarat,395001,India,2024-11-29 23:16:25
+80,Advika Iyer,advika.iyer@mail.com,+91 9981176815,56 Vasant Kunj,Delhi,Delhi,110070,India,2023-01-10 01:59:40
+81,Dhruvi Verma,dhruvi.verma@mail.com,+91 9146896469,37 Jayanagar,Bangalore,Karnataka,560041,India,2024-07-14 08:56:37
+82,Aayan Iyer,aayan.iyer@mail.com,+91 9101098266,69 Green Park,Delhi,Delhi,110016,India,2024-11-07 23:22:18
+83,Samaira Patel,samaira.patel@mail.com,+91 9344011794,45 Versova,Mumbai,Maharashtra,400061,India,2024-11-29 07:10:53
+84,Hriday Patel,hriday.patel@mail.com,+91 9283318444,83 Kodambakkam,Chennai,Tamil Nadu,600024,India,2025-06-17 22:03:20
+85,Darsh Singh,darsh.singh@mail.com,+91 9035799820,54 Kalyani Nagar,Pune,Maharashtra,411006,India,2023-01-30 13:06:15
+86,Ira Das,ira.das@mail.com,+91 9526816644,27 Barasat,Kolkata,West Bengal,700124,India,2023-09-08 14:56:47
+87,Manvi Patel,manvi.patel@mail.com,+91 9322936861,75 Gota,Ahmedabad,Gujarat,382481,India,2024-03-31 18:31:21
+88,Armaan Reddy,armaan.reddy@mail.com,+91 9963491260,39 Jagatpura,Jaipur,Rajasthan,302017,India,2025-01-20 03:26:07
+89,Reyansh Gupta,reyansh.gupta@mail.com,+91 9147942593,61 Rander,Surat,Gujarat,395005,India,2024-02-10 03:37:38
+90,Aadya Gupta,aadya.gupta@mail.com,+91 9880046122,88 Paschim Vihar,Delhi,Delhi,110063,India,2024-06-12 16:12:22
+91,Anvi Sharma,anvi.sharma@mail.com,+91 9821656794,46 Yelahanka,Bangalore,Karnataka,560064,India,2024-12-11 03:15:06
+92,Samar Verma,samar.verma@mail.com,+91 9679801689,93 Preet Vihar,Delhi,Delhi,110092,India,2023-09-01 22:35:51
+93,Veda Khan,veda.khan@mail.com,+91 9570631844,74 Vashi,Mumbai,Maharashtra,400703,India,2023-01-11 05:36:09
+94,Shloka Khan,shloka.khan@mail.com,+91 9212746275,52 Porur,Chennai,Tamil Nadu,600116,India,2023-12-21 11:14:30
+95,Ayush Reddy,ayush.reddy@mail.com,+91 9989569477,67 Shivaji Nagar,Pune,Maharashtra,411005,India,2025-03-14 16:09:26
+96,Arjun Verma,arjun.verma@mail.com,+91 9391076690,41 Belgharia,Kolkata,West Bengal,700056,India,2025-03-18 10:44:30
+97,Anaya Reddy,anaya.reddy@mail.com,+91 9878733896,85 Thaltej,Ahmedabad,Gujarat,380054,India,2023-08-17 03:24:18
+98,Eshan Khan,eshan.khan@mail.com,+91 9257668741,29 Sanganer,Jaipur,Rajasthan,302029,India,2024-04-13 09:54:21
+99,Yuvaan Sharma,yuvaan.sharma@mail.com,+91 9377192055,78 Kamrej,Surat,Gujarat,394185,India,2023-09-06 14:15:06
+100,Ishita Sharma,ishita.sharma@mail.com,+91 9752779103,51 Laxmi Nagar,Delhi,Delhi,110092,India,2025-02-27 08:56:53

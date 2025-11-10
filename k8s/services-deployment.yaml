@@ -1,0 +1,633 @@
+---
+# Gateway Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway
+  namespace: eci-platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gateway
+  template:
+    metadata:
+      labels:
+        app: gateway
+    spec:
+      initContainers:
+      - name: wait-postgres
+        image: busybox:1.28
+        command: ['sh', '-c', 'until nc -z postgres 5432; do echo waiting for postgres; sleep 2; done']
+      - name: wait-redis
+        image: busybox:1.28
+        command: ['sh', '-c', 'until nc -z redis 6379; do echo waiting for redis; sleep 2; done']
+      containers:
+      - name: gateway
+        image: eci/gateway:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8000
+        env:
+        - name: POSTGRES_HOST
+          value: postgres
+        - name: POSTGRES_PORT
+          value: "5432"
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_DB
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_PASSWORD
+        - name: JWT_SECRET
+          value: supersecret
+        - name: REDIS_URL
+          value: redis://redis:6379/0
+        - name: SERVICE_NAME
+          value: gateway
+        - name: ENVIRONMENT
+          value: production
+        - name: LOG_LEVEL
+          value: INFO
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 3
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 3
+          periodSeconds: 3
+          timeoutSeconds: 2
+          failureThreshold: 2
+        startupProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 3
+          timeoutSeconds: 2
+          failureThreshold: 20
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway
+  namespace: eci-platform
+spec:
+  type: NodePort
+  selector:
+    app: gateway
+  ports:
+  - port: 8000
+    targetPort: 8000
+    nodePort: 30080
+---
+# Customers Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customers
+  namespace: eci-platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: customers
+  template:
+    metadata:
+      labels:
+        app: customers
+    spec:
+      initContainers:
+      - name: wait-postgres
+        image: busybox:1.28
+        command: ['sh', '-c', 'until nc -z postgres 5432; do echo waiting for postgres; sleep 2; done']
+      containers:
+      - name: customers
+        image: eci/customers:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8000
+        env:
+        - name: POSTGRES_HOST
+          value: postgres
+        - name: POSTGRES_PORT
+          value: "5432"
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_DB
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_PASSWORD
+        startupProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 3
+          timeoutSeconds: 2
+          failureThreshold: 20
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: customers
+  namespace: eci-platform
+spec:
+  selector:
+    app: customers
+  ports:
+  - port: 8000
+    targetPort: 8000
+---
+# Products Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: products
+  namespace: eci-platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: products
+  template:
+    metadata:
+      labels:
+        app: products
+    spec:
+      initContainers:
+      - name: wait-postgres
+        image: busybox:1.28
+        command: ['sh', '-c', 'until nc -z postgres 5432; do echo waiting for postgres; sleep 2; done']
+      containers:
+      - name: products
+        image: eci/products:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8000
+        env:
+        - name: POSTGRES_HOST
+          value: postgres
+        - name: POSTGRES_PORT
+          value: "5432"
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_DB
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_PASSWORD
+        startupProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 3
+          timeoutSeconds: 2
+          failureThreshold: 20
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: products
+  namespace: eci-platform
+spec:
+  selector:
+    app: products
+  ports:
+  - port: 8000
+    targetPort: 8000
+---
+# Inventory Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory
+  namespace: eci-platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inventory
+  template:
+    metadata:
+      labels:
+        app: inventory
+    spec:
+      initContainers:
+      - name: wait-postgres
+        image: busybox:1.28
+        command: ['sh', '-c', 'until nc -z postgres 5432; do echo waiting for postgres; sleep 2; done']
+      containers:
+      - name: inventory
+        image: eci/inventory:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8000
+        env:
+        - name: POSTGRES_HOST
+          value: postgres
+        - name: POSTGRES_PORT
+          value: "5432"
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_DB
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_PASSWORD
+        startupProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 3
+          timeoutSeconds: 2
+          failureThreshold: 20
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventory
+  namespace: eci-platform
+spec:
+  selector:
+    app: inventory
+  ports:
+  - port: 8000
+    targetPort: 8000
+---
+# Orders Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orders
+  namespace: eci-platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orders
+  template:
+    metadata:
+      labels:
+        app: orders
+    spec:
+      initContainers:
+      - name: wait-postgres
+        image: busybox:1.28
+        command: ['sh', '-c', 'until nc -z postgres 5432; do echo waiting for postgres; sleep 2; done']
+      containers:
+      - name: orders
+        image: eci/orders:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8000
+        env:
+        - name: POSTGRES_HOST
+          value: postgres
+        - name: POSTGRES_PORT
+          value: "5432"
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_DB
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_PASSWORD
+        startupProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 3
+          timeoutSeconds: 2
+          failureThreshold: 20
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: orders
+  namespace: eci-platform
+spec:
+  selector:
+    app: orders
+  ports:
+  - port: 8000
+    targetPort: 8000
+---
+# Payments Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payments
+  namespace: eci-platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payments
+  template:
+    metadata:
+      labels:
+        app: payments
+    spec:
+      initContainers:
+      - name: wait-postgres
+        image: busybox:1.28
+        command: ['sh', '-c', 'until nc -z postgres 5432; do echo waiting for postgres; sleep 2; done']
+      containers:
+      - name: payments
+        image: eci/payments:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8000
+        env:
+        - name: POSTGRES_HOST
+          value: postgres
+        - name: POSTGRES_PORT
+          value: "5432"
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_DB
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_PASSWORD
+        startupProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 3
+          timeoutSeconds: 2
+          failureThreshold: 20
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: payments
+  namespace: eci-platform
+spec:
+  selector:
+    app: payments
+  ports:
+  - port: 8000
+    targetPort: 8000
+---
+# Shipments Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipments
+  namespace: eci-platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shipments
+  template:
+    metadata:
+      labels:
+        app: shipments
+    spec:
+      initContainers:
+      - name: wait-postgres
+        image: busybox:1.28
+        command: ['sh', '-c', 'until nc -z postgres 5432; do echo waiting for postgres; sleep 2; done']
+      containers:
+      - name: shipments
+        image: eci/shipments:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8000
+        env:
+        - name: POSTGRES_HOST
+          value: postgres
+        - name: POSTGRES_PORT
+          value: "5432"
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_DB
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_PASSWORD
+        startupProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 3
+          timeoutSeconds: 2
+          failureThreshold: 20
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shipments
+  namespace: eci-platform
+spec:
+  selector:
+    app: shipments
+  ports:
+  - port: 8000
+    targetPort: 8000
+---
+# Dashboard Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashboard
+  namespace: eci-platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dashboard
+  template:
+    metadata:
+      labels:
+        app: dashboard
+    spec:
+      initContainers:
+      - name: wait-postgres
+        image: busybox:1.28
+        command: ['sh', '-c', 'until nc -z postgres 5432; do echo waiting for postgres; sleep 2; done']
+      containers:
+      - name: dashboard
+        image: eci/dashboard:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8008
+        env:
+        - name: POSTGRES_HOST
+          value: postgres
+        - name: POSTGRES_PORT
+          value: "5432"
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_DB
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_PASSWORD
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8008
+          initialDelaySeconds: 8
+          periodSeconds: 10
+          timeoutSeconds: 3
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8008
+          initialDelaySeconds: 3
+          periodSeconds: 3
+          timeoutSeconds: 2
+          failureThreshold: 2
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dashboard
+  namespace: eci-platform
+spec:
+  type: NodePort
+  selector:
+    app: dashboard
+  ports:
+  - port: 8008
+    targetPort: 8008
+    nodePort: 30008

@@ -1,0 +1,66 @@
+# Development overrides - not for production
+
+services:
+  gateway:
+    volumes:
+      - ./services/gateway/app:/app/app
+      - ./shared:/app/shared
+    environment:
+      - LOG_LEVEL=DEBUG
+      - ENVIRONMENT=development
+
+  customers:
+    volumes:
+      - ./services/customers/app:/app/app
+      - ./shared:/app/shared
+    environment:
+      - LOG_LEVEL=DEBUG
+      - ENVIRONMENT=development
+
+  products:
+    volumes:
+      - ./services/products/app:/app/app
+      - ./shared:/app/shared
+    environment:
+      - LOG_LEVEL=DEBUG
+      - ENVIRONMENT=development
+
+  inventory:
+    volumes:
+      - ./services/inventory/app:/app/app
+      - ./shared:/app/shared
+    environment:
+      - LOG_LEVEL=DEBUG
+      - ENVIRONMENT=development
+
+  orders:
+    volumes:
+      - ./services/orders/app:/app/app
+      - ./shared:/app/shared
+    environment:
+      - LOG_LEVEL=DEBUG
+      - ENVIRONMENT=development
+
+  payments:
+    volumes:
+      - ./services/payments/app:/app/app
+      - ./shared:/app/shared
+    environment:
+      - LOG_LEVEL=DEBUG
+      - ENVIRONMENT=development
+
+  shipments:
+    volumes:
+      - ./services/shipments/app:/app/app
+      - ./shared:/app/shared
+    environment:
+      - LOG_LEVEL=DEBUG
+      - ENVIRONMENT=development
+
+  dashboard:
+    volumes:
+      - ./services/dashboard/main.py:/app/main.py
+      - ./services/dashboard/templates:/app/templates
+    environment:
+      - LOG_LEVEL=DEBUG
+      - ENVIRONMENT=development

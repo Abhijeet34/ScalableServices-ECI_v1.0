@@ -1,0 +1,175 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: eci
+      POSTGRES_USER: eci
+      POSTGRES_PASSWORD: eci
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U eci"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  gateway:
+    build:
+      context: .
+      dockerfile: ./services/gateway/Dockerfile
+      args:
+        RELEASE_ID: ${RELEASE_ID:-dev}
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_DB: eci
+      POSTGRES_USER: eci
+      POSTGRES_PASSWORD: eci
+      JWT_SECRET: supersecret
+      REDIS_URL: redis://redis:6379/0
+      SERVICE_NAME: gateway
+      ENVIRONMENT: ${ENVIRONMENT:-development}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    ports:
+      - "8080:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  customers:
+    build:
+      context: .
+      dockerfile: ./services/customers/Dockerfile
+      args:
+        RELEASE_ID: ${RELEASE_ID:-dev}
+    environment: &db_env
+      POSTGRES_HOST: postgres
+      POSTGRES_DB: eci
+      POSTGRES_USER: eci
+      POSTGRES_PASSWORD: eci
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  products:
+    build:
+      context: .
+      dockerfile: ./services/products/Dockerfile
+      args:
+        RELEASE_ID: ${RELEASE_ID:-dev}
+    environment: *db_env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  inventory:
+    build:
+      context: .
+      dockerfile: ./services/inventory/Dockerfile
+      args:
+        RELEASE_ID: ${RELEASE_ID:-dev}
+    environment: *db_env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  orders:
+    build:
+      context: .
+      dockerfile: ./services/orders/Dockerfile
+      args:
+        RELEASE_ID: ${RELEASE_ID:-dev}
+    environment: *db_env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  payments:
+    build:
+      context: .
+      dockerfile: ./services/payments/Dockerfile
+      args:
+        RELEASE_ID: ${RELEASE_ID:-dev}
+    environment: *db_env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      orders:
+        condition: service_healthy
+    restart: unless-stopped
+
+  shipments:
+    build:
+      context: .
+      dockerfile: ./services/shipments/Dockerfile
+      args:
+        RELEASE_ID: ${RELEASE_ID:-dev}
+    environment: *db_env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      orders:
+        condition: service_healthy
+    restart: unless-stopped
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: ./services/dashboard/Dockerfile
+      args:
+        RELEASE_ID: ${RELEASE_ID:-dev}
+    ports:
+      - "8008:8008"
+    depends_on:
+      customers:
+        condition: service_healthy
+      products:
+        condition: service_healthy
+      inventory:
+        condition: service_healthy
+      orders:
+        condition: service_healthy
+      payments:
+        condition: service_healthy
+      shipments:
+        condition: service_healthy
+    restart: unless-stopped
+
+  seed:
+    build:
+      context: .
+      dockerfile: ./services/seed/Dockerfile
+      args:
+        RELEASE_ID: ${RELEASE_ID:-dev}
+    environment: *db_env
+    volumes:
+      # Mount seed data as read-only - changes reflect immediately without rebuild
+      - ./services/seed/eci_seed_data:/app/eci_seed_data:ro
+      - ./services/seed/seed.py:/app/seed.py:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+    profiles: ["seed"]
+
+volumes:
+  pgdata:
