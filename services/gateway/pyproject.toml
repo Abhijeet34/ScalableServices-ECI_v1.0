@@ -10,7 +10,7 @@ dependencies = [
   "httpx==0.27.0",
   "pydantic==2.9.2",
   "PyJWT==2.9.0",
-  "strawberry-graphql==0.227.3",
+  "strawberry-graphql==0.257.0",
   "redis==5.0.1",
   "cachetools==5.3.3",
   "python-multipart==0.0.9",
